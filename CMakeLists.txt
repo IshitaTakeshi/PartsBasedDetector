@@ -18,7 +18,10 @@ find_library(cvmatio_LIBRARIES cvmatio PATHS ./cvmatio/lib)
 # -----------------------------------------------
 
 # include all warning types
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -pedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -pedantic")
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -pedantic -std=c99")
+
 
 # set the build type
 if (NOT CMAKE_BUILD_TYPE)

@@ -7,26 +7,21 @@ extern "C" {
 #endif
 
 
-typedef struct part_t {
-  int x;
-  int y;
-} part_t;
-
-
-typedef struct parts_t {
-  unsigned int size;
-  part_t **parts;
-} parts_t;
+typedef struct point_t {
+  unsigned long x;
+  unsigned long y;
+} point_t;
 
 
 typedef struct candidate_t {
-  parts_t *parts;
+  unsigned long size;
+  point_t **parts;
   float *confidence;
 } candidate_t;
 
 
 typedef struct candidates_t {
-  unsigned int size;
+  unsigned long size;
   candidate_t **candidates;
 } candidates_t;
 

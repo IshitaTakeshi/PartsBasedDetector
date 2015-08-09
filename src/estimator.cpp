@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <cstdio>
 #include <iostream>
 #include "estimator.h"
@@ -7,57 +8,69 @@
 using namespace std;
 using namespace cv;
 
-#include <stdio.h>
+
 void test_calling() {
   printf("called\n");
 }
 
-void* create_estimator(char filename[]) {
+
+void *create_estimator(char filename[]) {
   return new PoseEstimator(string(filename));
 }
 
 
-parts_t* parts_to_parts_t(const vector<Point> &parts) {
-  part_t **parts_ = (part_t**)malloc(sizeof(part_t*) * parts.size());
-  for(int i = 0; i < parts.size(); i++) {
-    part_t *part = (part_t*)malloc(sizeof(part_t));
+point_t **parts_to_part_array(const vector<Point> &parts) {
+  point_t **parts_ = (point_t**)malloc(sizeof(point_t*) * parts.size());
+  for(unsigned int i = 0; i < parts.size(); i++) {
+    point_t *part = (point_t*)malloc(sizeof(point_t));
     part->x = parts[i].x;
     part->y = parts[i].y;
     parts_[i] = part;
   }
-
-  parts_t *p = (parts_t*)malloc(sizeof(parts_t));
-  p->parts = parts_;
-  p->size = parts.size();
-  return p;
+  return parts_;
 }
 
 
-candidate_t *init_candidate(parts_t *parts, float *confidence) {
+candidate_t *init_candidate(point_t **parts, float *confidence,
+                            unsigned long size) {
   candidate_t *candidate = (candidate_t*)malloc(sizeof(candidate_t));
+  candidate->size = size;
   candidate->parts = parts;
   candidate->confidence = confidence;
+  return candidate;
+}
+
+
+float *vector_to_float_array(vector<float> &vector) {
+  float *array = (float *)malloc(sizeof(float) * vector.size());
+  for(unsigned int i = 0; i < vector.size(); i++) {
+    array[i] = vector[i];
+  }
+  return array;
 }
 
 
 candidate_t *candidate_to_candidate_t(const Candidate &candidate) {
   const vector<Point> &parts = candidate.parts();
-  parts_t *parts_ = parts_to_parts_t(parts);
-
+  point_t **parts_ = parts_to_part_array(parts);
   vector<float> confidence = candidate.confidence();
 
-  //pointer to the vector object
-  return init_candidate(parts_, &confidence[0]);
+  float *confidence_ = vector_to_float_array(confidence);
+
+  candidate_t *candidate_ = init_candidate(parts_, confidence_, parts.size());
+  return candidate_;
 }
 
 
 candidates_t *candidates_to_candidates_t(const vector<Candidate> &candidates) {
   candidate_t **candidates_ =
       (candidate_t**)malloc(sizeof(candidate_t*)*candidates.size());
-  for(int i = 0; i < candidates.size(); i++) {
+  for(unsigned int i = 0; i < candidates.size(); i++) {
     candidates_[i] = candidate_to_candidate_t(candidates[i]);
   }
+
   candidates_t *c = (candidates_t*)malloc(sizeof(candidates_t));
+
   c->candidates = candidates_;
   c->size = candidates.size();
   return c;
@@ -71,21 +84,18 @@ candidates_t *estimate(void *estimator, char filename[]) {
 }
 
 
-void free_parts(parts_t *parts) {
-  for(int i = 0; i < parts->size; i++) {
-    free(parts->parts[i]);
-  }
-  free(parts);
-}
-
-
 void free_candidate(candidate_t *candidate) {
-  free_parts(candidate->parts);
+  for(unsigned int i = 0; i < candidate->size; i++) {
+    free(candidate->parts[i]);
+  }
+  free(candidate->parts);
+  free(candidate->confidence);
   free(candidate);
 }
 
+
 void free_candidates(candidates_t* candidates) {
-  for(int i = 0; i < candidates->size; i++) {
+  for(unsigned int i = 0; i < candidates->size; i++) {
     free_candidate(candidates->candidates[i]);
   }
   free(candidates);

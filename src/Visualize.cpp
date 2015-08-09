@@ -84,7 +84,7 @@ void Visualize::candidates(const Mat& im, const vectorCandidate& candidates,
   }
 
   // draw each candidate to the canvas
-  const int LINE_THICKNESS = 4;
+  //const int LINE_THICKNESS = 4;
   Scalar black(0,0,0);
 
   for (unsigned int n = 0; n < N; ++n) {
