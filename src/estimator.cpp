@@ -77,9 +77,11 @@ candidates_t *candidates_to_candidates_t(const vector<Candidate> &candidates) {
 }
 
 
+/* Estimate the pose given a file.*/
 candidates_t *estimate(void *estimator, char filename[]) {
   PoseEstimator *e = static_cast<PoseEstimator*>(estimator);
-  const vector<Candidate> &candidates = e->estimate(string(filename));
+  vector<Candidate> candidates = e->estimate(string(filename));
+	Candidate::sort(candidates);
   return candidates_to_candidates_t(candidates);
 }
 

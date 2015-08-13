@@ -87,23 +87,19 @@ void Visualize::candidates(const Mat& im, const vectorCandidate& candidates,
   //const int LINE_THICKNESS = 4;
   Scalar black(0,0,0);
 
-  for (unsigned int n = 0; n < N; ++n) {
-    Candidate candidate = candidates[n];
-    for (unsigned int p = 0; p < candidate.parts().size(); ++p) {
-      Point point = candidate.parts()[p];
+  Candidate candidate = candidates[0];
+  for (unsigned int p = 0; p < candidate.parts().size(); ++p) {
+    Point point = candidate.parts()[p];
 
-      std::cout << candidate.confidence()[p] << std::endl;
+    string confidence = boost::lexical_cast<string>(candidate.confidence()[p]);
+    circle(canvas, point, 10.0, colors[p], -1);
 
-      string confidence = boost::lexical_cast<string>(candidate.confidence()[p]);
-      circle(canvas, point, 32.0, colors[p], 10);
-
-      if (display_confidence && p == 0) {
-        putText(canvas, confidence, Point(point.x, point.y-5),
-                FONT_HERSHEY_SIMPLEX, 0.5f, black, 2);
-      }
+    if (display_confidence && p == 0) {
+      putText(canvas, confidence, Point(point.x, point.y-5),
+              FONT_HERSHEY_SIMPLEX, 0.5f, black, 2);
     }
-    //rectangle(canvas, candidate.boundingBox(), Scalar(255, 0, 0), LINE_THICKNESS);
   }
+  //rectangle(canvas, candidate.boundingBox(), Scalar(255, 0, 0), LINE_THICKNESS);
 }
 
 /*! @brief visualize all of the candidate part locations overlaid on an image

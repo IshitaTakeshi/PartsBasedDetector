@@ -40,8 +40,9 @@ The project has the following dependencies:
 * ECTO    OPTIONAL (for building and ECTO cell)
 
 ## Downloading dataset
+
 ```
-$python3 dataset/loader_ethz.py
+$python3 dataset/load_ethz.py
 ```
 
 ## Building
@@ -72,12 +73,11 @@ on training a model
 This package is developed and maintained by Hilton Bristow, Willow Garage
 
 ### Generating models
+
 ```
 $cd matlab
-$octave
-> pkg load image
-> compile
-> training_demo
+$octave compile
+$octave demo_ethz.m
 ```
 
 ### Detecting

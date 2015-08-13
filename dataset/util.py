@@ -1,3 +1,17 @@
+import matplotlib
+matplotlib.use('Qt4Agg')
+matplotlib.rcParams['backend.qt4'] = 'PySide'
+import matplotlib.pyplot as plt
+
+
+def plot_overlaid(image, coordinates):
+    plt.imshow(image)
+    plt.scatter(*(coordinates.T))
+    for i, c in enumerate(coordinates):
+        plt.annotate((i+1, c.tolist()), c, color='white')
+    plt.show()
+
+
 def download(url, path):
     from urllib import request
     response = request.urlopen(url)

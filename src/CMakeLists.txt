@@ -41,10 +41,22 @@ install(TARGETS ${PROJECT_NAME}_lib
 )
 
 # as an executable
-set(SRC_FILES pose_estimator_demo.c)
-add_executable(${PROJECT_NAME}_bin ${SRC_FILES})
-target_link_libraries(${PROJECT_NAME}_bin ${LIBS} ${PROJECT_NAME}_lib)
-set_target_properties(${PROJECT_NAME}_bin PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-install(TARGETS ${PROJECT_NAME}_bin
+set(EXE1_FILES SRC_FILES)
+set(EXE1_FILES pose_estimator_demo.c)
+add_executable(${PROJECT_NAME}1_bin ${EXE1_FILES})
+target_link_libraries(${PROJECT_NAME}1_bin ${LIBS} ${PROJECT_NAME}_lib)
+set_target_properties(${PROJECT_NAME}1_bin PROPERTIES
+                      OUTPUT_NAME ${PROJECT_NAME}1)
+install(TARGETS ${PROJECT_NAME}1_bin
+        RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin
+)
+
+set(EXE2_FILES SRC_FILES)
+set(EXE2_FILES demo.cpp)
+add_executable(${PROJECT_NAME}2_bin ${EXE2_FILES})
+target_link_libraries(${PROJECT_NAME}2_bin ${LIBS} ${PROJECT_NAME}_lib)
+set_target_properties(${PROJECT_NAME}2_bin PROPERTIES
+                      OUTPUT_NAME ${PROJECT_NAME}2)
+install(TARGETS ${PROJECT_NAME}2_bin
         RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/bin
 )
