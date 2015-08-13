@@ -83,5 +83,5 @@ $octave demo_ethz.m
 ### Detecting
 ```
 cd build
-./src/PartsBasedDetector ../matlab/demo_model.mat <path to image>
+./src/PartsBasedDetector ../matlab/ethz.mat <path to image>
 ```
