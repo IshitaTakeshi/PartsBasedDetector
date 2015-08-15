@@ -42,7 +42,8 @@ The project has the following dependencies:
 ## Downloading dataset
 
 ```
-$python3 dataset/load_ethz.py
+$cd dataset
+$octave load_lsp.m
 ```
 
 ## Building
@@ -55,12 +56,13 @@ To configure the project, set the options at the top of CMakeLists.txt
 To build the project, follow the normal cmake routine from the root folder:
 
 ```
-$cd PartsBasedDetectorMod
-$git clone https://github.com/hbristow/cvmatio.git
+$cd <PROJECT_ROOT>/pose
+$git submodule update
 $mkdir build
 $cd build
 $cmake ..
 $make
+$sudo make install
 ```
 
 ## Learning
@@ -77,11 +79,11 @@ This package is developed and maintained by Hilton Bristow, Willow Garage
 ```
 $cd matlab
 $octave compile
-$octave demo_ethz.m
+$octave 
 ```
 
 ### Detecting
 ```
 cd build
-./src/PartsBasedDetector ../matlab/ethz.mat <path to image>
+./src/PartsBasedDetector ../matlab/lsp.mat <path to image>
 ```

@@ -92,7 +92,7 @@ void Visualize::candidates(const Mat& im, const vectorCandidate& candidates,
     Point point = candidate.parts()[p];
 
     string confidence = boost::lexical_cast<string>(candidate.confidence()[p]);
-    circle(canvas, point, 10.0, colors[p], -1);
+    circle(canvas, point, 4.0, colors[p], -1);
 
     if (display_confidence && p == 0) {
       putText(canvas, confidence, Point(point.x, point.y-5),
