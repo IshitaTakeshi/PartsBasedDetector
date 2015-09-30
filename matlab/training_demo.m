@@ -35,7 +35,7 @@ addpath(fullfile(root, 'learning'));
 % Define training and testing data
 name = 'demo_model';
 [pos test] = getPositiveData('../dataset/positive','.jpg','.txt',0.7);
-neg        = getNegativeData('../dataset/negative', '.jpg');
+neg        = getNegativeData('../dataset/INRIAPerson/Train/neg', '.png');
 pos        = pointtobox(pos,pa);
 
 % --------------------

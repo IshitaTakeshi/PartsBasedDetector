@@ -1,4 +1,5 @@
-% Copyright (C) 2015 Ishita Takeshi
+% Copyright (C) 2012 Yi Yang, Deva Ramanan, Ishita Takeshi
+
 %
 % This program is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -57,7 +58,7 @@ addpath(fullfile(root, 'learning'));
 name = 'lsp';
 [pos test] = getPositiveData('../dataset/lsp_dataset/positive',
                              '.jpg', '.txt', 1.0);
-neg        = getNegativeData('../dataset/lsp_dataset/negative', '.jpg');
+neg        = getNegativeData('../dataset/lsp_dataset/negative', '.jpg')
 pos        = pointtobox(pos,pa);
 
 
