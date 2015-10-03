@@ -39,9 +39,9 @@ addpath(fullfile(root, 'learning'));
 % --------------------
 % Define training and testing data
 name = 'fashionista';
-[pos test] = getPositiveData('../dataset/fashionista',
+[pos test] = getPositiveData('../dataset/dataset/fashionista',
                              '.jpg', '.txt', 1.0);
-neg        = getNegativeData('../dataset/INRIAPerson/negative', '.jpg');
+neg        = getNegativeData('../dataset/dataset/INRIAPerson/negative', '.jpg');
 pos        = pointtobox(pos,pa);
 
 

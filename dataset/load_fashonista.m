@@ -8,12 +8,12 @@ end
 url = ['http://vision.is.tohoku.ac.jp/'...
        '~kyamagu/research/paperdoll/fashionista-v0.2.1.tgz'];
 
-system(sprintf('wget -c %s', url));
-system('tar xvf fashionista-v0.2.1.tgz');
+system(sprintf('wget -c %s -P dataset', url));
+system('tar xvf dataset/fashionista-v0.2.1.tgz -C dataset');
 
-load('fashionista_v0.2.mat');
+load('dataset/fashionista-v0.2.1/fashionista_v0.2.1.mat');
 
-data_dir = 'fashionista';
+data_dir = 'dataset/fashionista';
 mkdir(data_dir);
 
 for i = 1:length(truths)
