@@ -5,7 +5,7 @@ tar xvf dataset/INRIAPerson.tar -C dataset
 chmod +w dataset/INRIAPerson/Train/neg
 chmod +w dataset/INRIAPerson/Test/neg
 
-mkdir dataset/INRIAPerson/negative
+mkdir -p dataset/INRIAPerson/negative
 mv dataset/INRIAPerson/Test/neg/* dataset/INRIAPerson/Train/neg/* \
    dataset/INRIAPerson/negative
 
