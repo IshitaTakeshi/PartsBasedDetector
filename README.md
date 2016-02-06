@@ -42,8 +42,9 @@ The project has the following dependencies:
 ## Downloading dataset
 
 ```
-$cd dataset
-$octave load_lsp.m
+$cd <PROJECT_ROOT>/pose/dataset
+$./load_inria.sh
+$octave load_fashionista.m
 ```
 
 ## Building
@@ -78,12 +79,12 @@ This package is developed and maintained by Hilton Bristow, Willow Garage
 
 ```
 $cd matlab
-$octave compile
-$octave 
+$octave compile.m
+$octave demo_fashionista.m
 ```
 
 ### Detecting
 ```
 cd build
-./src/PartsBasedDetector ../matlab/lsp.mat <path to image>
+./src/PartsBasedDetector ../matlab/fashionista.mat <path to image>
 ```
