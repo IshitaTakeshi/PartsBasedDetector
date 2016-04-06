@@ -12,6 +12,7 @@ set(SRC_FILES
     SpatialConvolutionEngine.cpp
     StereoCameraModel.cpp
     Visualize.cpp
+    MatlabIOModel.cpp
     nms.cpp
     estimator.cpp)
 
