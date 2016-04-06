@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 2.8.5)
 # USER DEFINED VARIABLES
 # -----------------------------------------------
 option(BUILD_EXECUTABLE "Build as executable to test functionality"    OFF)
-option(BUILD_DOC        "Build documentation with Doxygen"             ON)
+option(BUILD_DOC        "Build documentation with Doxygen"             OFF)
 option(WITH_OPENMP      "Build with OpenMP support for multithreading" ON)
 
 # find cvmatio manually
@@ -19,12 +19,10 @@ find_library(cvmatio_LIBRARIES cvmatio PATHS ./cvmatio/lib)
 
 # include all warning types
 set(CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter \
-    -g -pedantic")
+    "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -g -pedantic")
 
 set(CMAKE_C_FLAGS
-    "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter \
-    -g -pedantic -std=c99")
+    "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Wno-unused-parameter -g -pedantic -std=c99")
 
 
 # set the build type
@@ -59,7 +57,7 @@ include(cmake/FindEigen.cmake)
 find_package(Boost COMPONENTS system filesystem signals REQUIRED)
 find_package(OpenCV 2.4.9 REQUIRED)
 #find_package(Eigen REQUIRED)
-include_directories(${EIGEN_INCLUDE_DIRS})
+#include_directories(${EIGEN_INCLUDE_DIRS})
 add_definitions(-DEIGEN_USE_NEW_STDVECTOR
     -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET)
 
