@@ -1,0 +1,9 @@
+build
+doc
+CMakeFiles
+dataset/dataset
+
+*.mex
+*.mexa64
+*.pyc
+*.swp

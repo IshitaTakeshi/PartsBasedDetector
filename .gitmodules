@@ -1,0 +1,3 @@
+[submodule "cvmatio"]
+	path = cvmatio
+	url = https://github.com/hbristow/cvmatio.git
