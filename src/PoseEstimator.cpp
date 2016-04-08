@@ -19,7 +19,7 @@ PoseEstimator::PoseEstimator(const string& model_filename) {
   string ext = boost::filesystem::path(model_filename).extension().string();
 	if (ext.compare(".xml") == 0 || ext.compare(".yaml") == 0) {
 		model.reset(new FileStorageModel);
-	} else if (ext.compare(".mat") != 0) {
+	} else if (ext.compare(".mat") == 0) {
     model.reset(new MatlabIOModel);
   } else {
 		printf("Unsupported model format: %s\n", ext.c_str());
