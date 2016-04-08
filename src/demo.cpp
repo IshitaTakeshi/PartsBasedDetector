@@ -65,15 +65,17 @@ int main(int argc, char** argv) {
 	// determine the type of model to read
 	boost::scoped_ptr<Model> model;
 
-  string ext = boost::filesystem::path(argv[1]).extension().string();
-	if (ext.compare(".mat") != 0) {
+	string ext = boost::filesystem::path(argv[1]).extension().string();
+	if (ext.compare(".xml") == 0 || ext.compare(".yaml") == 0) {
+		model.reset(new FileStorageModel);
+	} else if (ext.compare(".mat") != 0) {
+    model.reset(new MatlabIOModel);
+  } else {
 		printf("Unsupported model format: %s\n", ext.c_str());
 		exit(-2);
   }
 
-  model.reset(new MatlabIOModel);
-
-	bool ok = model->deserialize(argv[1]);
+  bool ok = model->deserialize(argv[1]);
 	if (!ok) {
 		printf("Error deserializing file\n");
 		exit(-3);

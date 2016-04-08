@@ -5,6 +5,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include "FileStorageModel.hpp"
 #include "MatlabIOModel.hpp"
 #include "PoseEstimator.hpp"
 
@@ -14,7 +15,16 @@ using namespace cv;
 
 PoseEstimator::PoseEstimator(const string& model_filename) {
   boost::scoped_ptr<Model> model;
-  model.reset(new MatlabIOModel);
+
+  string ext = boost::filesystem::path(model_filename).extension().string();
+	if (ext.compare(".xml") == 0 || ext.compare(".yaml") == 0) {
+		model.reset(new FileStorageModel);
+	} else if (ext.compare(".mat") != 0) {
+    model.reset(new MatlabIOModel);
+  } else {
+		printf("Unsupported model format: %s\n", ext.c_str());
+		exit(-2);
+  }
 
 	bool ok = model->deserialize(model_filename);
 	if (!ok) {
