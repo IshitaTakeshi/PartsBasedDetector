@@ -11,7 +11,7 @@ option(WITH_OPENMP      "Build with OpenMP support for multithreading" ON)
 
 # find cvmatio manually
 include_directories(./cvmatio/include)
-find_library(cvmatio_LIBRARIES cvmatio PATHS ./cvmatio/build/src)
+find_library(cvmatio_LIBRARIES cvmatio PATHS ./cvmatio/lib)
 
 # -----------------------------------------------
 # COMPILER FLAGS
