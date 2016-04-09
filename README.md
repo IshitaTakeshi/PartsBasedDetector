@@ -57,19 +57,23 @@ To configure the project, set the options at the top of CMakeLists.txt
 To build the project, follow the normal cmake routine from the root folder:
 
 ```
-$cd <PROJECT_ROOT>/pose
-$git submodule update
-$mkdir build
-$cd build
-$cmake ..
-$make
-$sudo make install
+git clone git@github.com:IshitaTakeshi/PartsBasedDetector.git --recursive
+cd PartsBasedDetector/cvmatio
+mkdir build
+cd build
+cmake ..
+make -j4
+cd ..
+mkdir build
+cd build
+cmake ..
+make -j4
 ```
 
 ## Learning
-The learning code is currently only in Octave/Matlab. This is because  
-the detector supports a number of learning schema, and porting all of  
-these to C++ is not practical at this time.  
+The learning code is currently only in Octave/Matlab. This is because 
+the detector supports a number of learning schema, and porting all of 
+these to C++ is not practical at this time.
 Please consult the README within the matlab/ directory for instructions
 on training a model
 
