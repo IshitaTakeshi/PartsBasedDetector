@@ -1,6 +1,6 @@
 [submodule "cvmatio"]
 	path = cvmatio
-	url = https://github.com/hbristow/cvmatio.git
+	url = git@github.com:IshitaTakeshi/cvmatio.git
 [submodule "models/xml"]
 	path = models/xml
 	url = git@github.com:wg-perception/PartsBasedDetectorModels.git
