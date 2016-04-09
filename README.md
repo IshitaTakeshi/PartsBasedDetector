@@ -61,7 +61,7 @@ git clone git@github.com:IshitaTakeshi/PartsBasedDetector.git --recursive
 cd PartsBasedDetector/cvmatio
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=.. ..
 make -j4
 cd ../..
 mkdir build
