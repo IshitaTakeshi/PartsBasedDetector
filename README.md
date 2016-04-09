@@ -67,7 +67,7 @@ make install
 cd ../..
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=.. ..
 make -j4
 make install
 ```
