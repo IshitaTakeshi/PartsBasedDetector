@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         exit(0);
     }
 
-    void* estimator = create_estimator(argv[1]);
+    void* estimator = make_estimator(argv[1]);
     candidates_t* candidates = estimate(estimator, argv[2]);
     print_candidate(candidates->candidates[0]);
 

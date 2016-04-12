@@ -14,7 +14,7 @@ typedef struct point_t {
 
 
 typedef struct candidate_t {
-  unsigned int size;  //the number of parts
+  unsigned long int size;  //the number of parts
   point_t **parts;  // the coordinates of the parts
   float *confidence;  //the confidence scores of the parts
 } candidate_t;
@@ -22,12 +22,12 @@ typedef struct candidate_t {
 
 //structure to hold a candidate array
 typedef struct candidates_t {
-  unsigned int size;
+  unsigned long int size;
   candidate_t **candidates;
 } candidates_t;
 
 
-void* create_estimator(char filename[]);
+void* make_estimator(char filename[]);
 candidates_t *estimate(void *estimator, char filename[]);
 void destroy_estimator(void *estimator);
 void print_candidate(candidate_t *candidate);

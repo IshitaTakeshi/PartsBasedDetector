@@ -16,7 +16,7 @@ void test_calling() {
 }
 
 
-void *create_estimator(char filename[]) {
+void *make_estimator(char filename[]) {
   return new PoseEstimator(string(filename));
 }
 
@@ -89,22 +89,6 @@ candidates_t *candidates_to_candidate_ts(const vector<Candidate> &candidates) {
 
   c->size = candidates.size();
 
-  printf("size in C       : %u\n", c->candidates[0]->size);
-  printf("parts in C      : %p\n", (void *)c->candidates[0]->parts);
-  printf("confidence in C : %p\n", (void *)c->candidates[0]->confidence);
-
-  for(unsigned int i = 0; i < c->candidates[0]->size; i++) {
-    printf("confidence[%2d] : %f is at %p\n", i,
-           c->candidates[0]->confidence[i],
-           (void *)&c->candidates[0]->confidence[i]);
-  }
-
-  printf("\n");
-  //for(unsigned int i = 0; i < c->candidates[0]->size; i++) {
-  //  printf("parts[%2d] : %p is at %p\n", i,
-  //         (void *)(c->candidates[0]->parts[i]),
-  //         (void *)(&(c->candidates[0]->parts[i])));
-  //}
   return c;
 }
 
